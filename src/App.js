@@ -380,7 +380,7 @@ class CreateNewTask extends React.Component {
         </div>
         <div className="taskHolder">
           <h2 className="sectionTitle">Today</h2>
-          {sortedList.map(sorted => {
+          {sortedList.forEach(sorted => {
             let taskList = {
               listStyle: 'none',
               borderBottom: 'solid 1px rgb(175, 175, 175)',
@@ -426,7 +426,7 @@ class CreateNewTask extends React.Component {
             }
           })}
           <h2 className="sectionTitle">Upcoming</h2>
-          {sortedList.map(sorted => {
+          {sortedList.forEach(sorted => {
             let taskList = {
               listStyle: 'none',
               borderBottom: 'solid 1px rgb(175, 175, 175)',
@@ -470,7 +470,7 @@ class CreateNewTask extends React.Component {
             }
           })}
           <h2 className="sectionTitle">Previous</h2>
-          {sortedList.map(sorted => {
+          {sortedList.forEach(sorted => {
             let taskList = {
               listStyle: 'none',
               borderBottom: 'solid 1px rgb(175, 175, 175)',
