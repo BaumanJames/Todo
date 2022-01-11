@@ -362,12 +362,7 @@ class CreateNewTask extends React.Component {
     let today = new Date().toISOString().slice(0, 10)
     const sortedList = [].concat(this.state.taskArray)
       .sort((a, b) => a.dateDue > b.dateDue ? 1 : -1);
-    //check the array for a single instance of a task due today, then it will add the today
-    //check the array for previous / upcoming add those
-    let something ={
-      display: 'hidden'
-    }
-
+    // console.log(sortedList)
     return (
       <div className="taskContainer">
         <div className="taskMaker">
@@ -384,7 +379,7 @@ class CreateNewTask extends React.Component {
           <button onClick={this.handleSubmit} className="createTask">Create Task</button>
         </div>
         <div className="taskHolder">
-          <h2 className={something}>Today</h2>
+          <h2 className="sectionTitle">Today</h2>
           {sortedList.map(sorted => {
             let taskList = {
               listStyle: 'none',
@@ -404,7 +399,6 @@ class CreateNewTask extends React.Component {
                 color: 'rgb(100, 100, 100)'
               }
             }
-            console.log(sorted.dateDue < today)
             if (sorted.dateDue.toString() === today) {
               return (
                 <div className="today">
@@ -429,35 +423,75 @@ class CreateNewTask extends React.Component {
                   </ul>
                 </div>
               )
-            } else if (sorted.dateDue.toString()) {
+            }
+          })}
+          <h2 className="sectionTitle">Upcoming</h2>
+          {sortedList.map(sorted => {
+            let taskList = {
+              listStyle: 'none',
+              borderBottom: 'solid 1px rgb(175, 175, 175)',
+              width: '80%',
+              height: '20px',
+              padding: '5px',
+            }
+            if (sorted.completed) {
+              taskList = {
+                listStyle: 'none',
+                borderBottom: 'solid 1px rgb(175, 175, 175)',
+                width: '80%',
+                height: '20px',
+                padding: '5px',
+                textDecoration: 'line-through',
+                color: 'rgb(100, 100, 100)'
+              }
+            }
+            if (sorted.dateDue.toString() > today) {
               return (
-                <div className="upcoming">
-                  <h2>Upcoming</h2>
-                  <ul>
-                    <li key={sorted.dateAdded} style={taskList}>
-                      <input
-                        type="checkbox"
-                        onChange={e => {
-                          let checked = e.target.checked;
-                          this.setState(
-                            this.state.taskArray.map(task => {
-                              if (sorted.name === task.name) {
-                                task.completed = checked
-                              }
-                              return task
-                            })
-                          )
-                        }
-                        } />
-                      {sorted.name}, Date due:{sorted.dateDue}
-                      <button type="button" dateadded={sorted.dateAdded.toString()} onClick={this.handleRemoveItem}>Delete</button></li>
-                  </ul>
-                </div>
+                <ul>
+                  <li key={sorted.dateAdded} style={taskList}>
+                    <input
+                      type="checkbox"
+                      onChange={e => {
+                        let checked = e.target.checked;
+                        this.setState(
+                          this.state.taskArray.map(task => {
+                            if (sorted.name === task.name) {
+                              task.completed = checked
+                            }
+                            return task
+                          })
+                        )
+                      }
+                      } />
+                    {sorted.name}, Date due:{sorted.dateDue}
+                    <button type="button" dateadded={sorted.dateAdded.toString()} onClick={this.handleRemoveItem}>Delete</button></li>
+                </ul>
               )
-            } else if (sorted.dateDue.toString() < today) {
+            }
+          })}
+          <h2 className="sectionTitle">Previous</h2>
+          {sortedList.map(sorted => {
+            let taskList = {
+              listStyle: 'none',
+              borderBottom: 'solid 1px rgb(175, 175, 175)',
+              width: '80%',
+              height: '20px',
+              padding: '5px',
+            }
+            if (sorted.completed) {
+              taskList = {
+                listStyle: 'none',
+                borderBottom: 'solid 1px rgb(175, 175, 175)',
+                width: '80%',
+                height: '20px',
+                padding: '5px',
+                textDecoration: 'line-through',
+                color: 'rgb(100, 100, 100)'
+              }
+            }
+            if (sorted.dateDue.toString() < today) {
               return (
                 <div className="previous">
-                  <h2>Previous</h2>
                   <ul>
                     <li key={sorted.dateAdded} style={taskList}>
                       <input
