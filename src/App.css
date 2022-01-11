@@ -1,0 +1,49 @@
+.App-header {
+  background-color: rgb(74, 125, 183);
+  display: flex;
+  color: white;
+  width: 100%
+}
+
+.Page-title{
+    margin-left: 25px;
+}
+
+.Quote-Holder{
+    width: auto;
+    max-width: 450px;
+    justify-self: center;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.taskMaker{
+    display: flex;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.inputTask{
+    width: 35%;
+    border: none;
+    border-bottom: solid 1px rgb(175, 175, 175);
+    font-size: 20px;
+
+}
+
+.createTask{
+    font-size: 16px;
+}
+
+.taskList{
+    list-style: none;
+    border-bottom: solid 1px rgb(175, 175, 175);
+    width: 80%;
+    height: 20px;
+    padding: 5px;
+}
